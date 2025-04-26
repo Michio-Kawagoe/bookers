@@ -1,6 +1,18 @@
 <div class="field">
   <h1>Editing Book</h1>
 </div>
+<% if flash[:alert].present? %>
+  <div class="error-box">
+    <p class="error"><%= flash[:alert] %></p>
+    <% if @book.errors.any? %>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
 <%= form_with model: @book do |f| %>
 
   <h4>Title</h4>
