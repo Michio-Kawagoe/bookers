@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "Book was successfurry created."
+      flash[:notice] = "Book was successfully created."
       redirect_to book_path(@book.id)
     else
       error_message = if @book.errors.count == 1
@@ -37,7 +37,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice] = "Book was successfully updated."
-    redirect_to book_path(@book.id)
+      redirect_to book_path(@book.id)
     else
       error_message = if @book.errors.count == 1
         "1 error prohibited this book from being saved:"
@@ -53,6 +53,7 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
+    flash[:notice] = "Book was successfully destroyed."
   end
 
   private
